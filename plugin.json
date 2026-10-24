@@ -1,6 +1,6 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
-  "name": "lex-mcp",
+  "name": "lex-mcp-polish-law",
   "version": "0.1.0",
   "description": "Research Polish law using legislation, judgments, tax interpretations and professional regulations from the Lex MCP index.",
   "author": {
@@ -19,7 +19,7 @@
   "extensions": {
     "com.openai": {
       "interface": {
-        "displayName": "Lex MCP",
+        "displayName": "Lex MCP Polish Law",
         "shortDescription": "Polish law with source texts",
         "longDescription": "Search indexed Polish and European legislation, judgments, Polish tax interpretations and professional regulations. Read the relevant source text, trace citations and compare available versions. Built for researchers and people working with Polish law. Requires a Lex-GPT account and authorization to use Lex MCP. Account limits apply. Coverage can be incomplete; the latest indexed text is not a guarantee of current law. The integration reads public legal sources and does not access private Lex-GPT conversations or user documents. It does not file documents or provide legal representation.",
         "developerName": "Lazy Evaluated Solutions Piotr Kosecki",

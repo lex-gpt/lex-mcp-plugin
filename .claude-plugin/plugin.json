@@ -1,5 +1,5 @@
 {
-  "name": "lex-mcp",
+  "name": "lex-mcp-polish-law",
   "version": "0.1.0",
   "description": "Research Polish law with source texts, judgments, tax interpretations and professional regulations from the Lex MCP index.",
   "author": {
@@ -15,5 +15,6 @@
     "legislation",
     "judgments"
   ],
-  "repository": "https://github.com/lex-gpt/lex-mcp-plugin"
+  "repository": "https://github.com/lex-gpt/lex-mcp-plugin",
+  "privacyPolicyUrl": "https://lex-mcp.pl/privacy"
 }
