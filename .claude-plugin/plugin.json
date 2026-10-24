@@ -1,0 +1,19 @@
+{
+  "name": "lex-mcp",
+  "version": "0.1.0",
+  "description": "Research Polish law with source texts, judgments, tax interpretations and professional regulations from the Lex MCP index.",
+  "author": {
+    "name": "Lazy Evaluated Solutions Piotr Kosecki",
+    "email": "kontakt@lex-gpt.pl",
+    "url": "https://lex-gpt.pl"
+  },
+  "homepage": "https://lex-mcp.pl/integrations",
+  "license": "MIT",
+  "keywords": [
+    "polish-law",
+    "legal-research",
+    "legislation",
+    "judgments"
+  ],
+  "repository": "https://github.com/lex-gpt/lex-mcp-plugin"
+}

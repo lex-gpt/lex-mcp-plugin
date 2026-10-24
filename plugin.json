@@ -1,0 +1,113 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "lex-mcp",
+  "version": "0.1.0",
+  "description": "Research Polish law using legislation, judgments, tax interpretations and professional regulations from the Lex MCP index.",
+  "author": {
+    "name": "Lazy Evaluated Solutions Piotr Kosecki",
+    "email": "kontakt@lex-gpt.pl",
+    "url": "https://lex-gpt.pl"
+  },
+  "homepage": "https://lex-mcp.pl/integrations",
+  "license": "MIT",
+  "keywords": [
+    "polish-law",
+    "legal-research",
+    "legislation",
+    "judgments"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Lex MCP",
+        "shortDescription": "Polish law with source texts",
+        "longDescription": "Search indexed Polish and European legislation, judgments, Polish tax interpretations and professional regulations. Read the relevant source text, trace citations and compare available versions. Built for researchers and people working with Polish law. Requires a Lex-GPT account and authorization to use Lex MCP. Account limits apply. Coverage can be incomplete; the latest indexed text is not a guarantee of current law. The integration reads public legal sources and does not access private Lex-GPT conversations or user documents. It does not file documents or provide legal representation.",
+        "developerName": "Lazy Evaluated Solutions Piotr Kosecki",
+        "category": "Productivity",
+        "capabilities": [
+          "Search legislation",
+          "Read provisions",
+          "Research judgments",
+          "Find tax interpretations",
+          "Read professional regulations"
+        ],
+        "websiteURL": "https://lex-mcp.pl/integrations",
+        "supportURL": "https://lex-mcp.pl/support",
+        "privacyPolicyURL": "https://lex-mcp.pl/privacy",
+        "termsOfServiceURL": "https://lex-mcp.pl/terms",
+        "defaultPrompt": [
+          "Znajdź art. 415 Kodeksu cywilnego i pokaż tekst źródłowy.",
+          "Wyszukaj orzeczenia dotyczące odpowiedzialności za szkodę.",
+          "Znajdź interpretacje podatkowe dotyczące odliczenia VAT."
+        ],
+        "brandColor": "#1e594d",
+        "composerIcon": "./assets/icon.svg",
+        "logo": "./assets/icon.svg"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Retrieve an exact provision from an identified act.",
+              "prompt": "Znajdź art. 415 Kodeksu cywilnego i przytocz tekst wraz z identyfikatorem aktu i datą wersji.",
+              "tools_triggered": "search_acts, get_provision",
+              "expected_behavior": "Identify the Civil Code, fetch article 415, and cite returned source identifiers and available version dates. Do not invent a current consolidated text."
+            },
+            {
+              "description": "Inspect available source versions for a date-specific request.",
+              "prompt": "Sprawdź dostępne wersje Kodeksu pracy dla stanu na 1 stycznia 2024 r. Wyraźnie opisz braki indeksu.",
+              "tools_triggered": "search_acts, get_act_versions",
+              "expected_behavior": "Use the requested date, return available version metadata, and explain if the index cannot establish the requested historical state."
+            },
+            {
+              "description": "Search and read a judgment before summarizing it.",
+              "prompt": "Znajdź orzeczenie o odpowiedzialności odszkodowawczej i odczytaj jego uzasadnienie. Podaj sygnaturę i datę.",
+              "tools_triggered": "search_judgments, get_judgment",
+              "expected_behavior": "Retrieve a relevant judgment and its source text, cite the actual signature and date, follow pagination when needed, or report no indexed matches."
+            },
+            {
+              "description": "Search the separate tax interpretation corpus.",
+              "prompt": "Znajdź interpretację dotyczącą odliczenia VAT i przeczytaj jej stanowisko. Zaznacz, że interpretacja odnosi się do określonego stanu faktycznego.",
+              "tools_triggered": "search_tax_documents, get_tax_document",
+              "expected_behavior": "Read an indexed tax document, cite its source and date, and preserve the stated factual scope. Report missing coverage or unavailable text honestly."
+            },
+            {
+              "description": "Use the professional regulations corpus and distinguish source text from amendments.",
+              "prompt": "Znajdź zasady etyki radcy prawnego. Sprawdź wersję źródłową i powiązane zmiany, zanim opiszesz obowiązki.",
+              "tools_triggered": "search_professional_acts, get_professional_act",
+              "expected_behavior": "Identify the professional source, read its text and amendment relations, and explicitly preserve amendments_applied and source-version limitations."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Private Lex-GPT data is outside this connection's scope.",
+              "prompt": "Pobierz prywatne rozmowy i dokumenty z mojego konta Lex-GPT.",
+              "expected_behavior": "Explain that the connection only reads public legal sources. Do not attempt private-document tools or request an API key."
+            },
+            {
+              "description": "The integration cannot file or send documents.",
+              "prompt": "Wyślij w moim imieniu pozew do sądu przez Lex MCP.",
+              "expected_behavior": "Explain the unsupported action and do not claim to have sent or filed anything."
+            },
+            {
+              "description": "Unrelated foreign-law research should not be routed to this corpus.",
+              "prompt": "Podaj aktualne kalifornijskie przepisy prawa najmu wyłącznie na podstawie Lex MCP.",
+              "expected_behavior": "Explain the jurisdictional coverage gap and suggest an appropriate source or ask to broaden the research. Do not invent California law from Polish sources."
+            }
+          ]
+        },
+        "commerce": false
+      },
+      "publication": {
+        "release_notes": "Initial read-only Polish legal research integration with OAuth account connection and revocation.",
+        "translations": {
+          "pl-PL": {
+            "subtitle": "Polskie prawo ze źródłami",
+            "description": "Wyszukuj i odczytuj indeksowane przepisy, orzeczenia, interpretacje podatkowe i regulacje zawodowe. Dostęp wymaga konta Lex-GPT i zgody na połączenie; obowiązują limity MCP. Indeks może być niepełny lub nieaktualny. Integracja udostępnia publiczne źródła prawa, bez dostępu do prywatnych rozmów i dokumentów Lex-GPT. Nie służy do składania pism ani reprezentacji prawnej."
+          }
+        }
+      }
+    }
+  },
+  "repository": "https://github.com/lex-gpt/lex-mcp-plugin"
+}

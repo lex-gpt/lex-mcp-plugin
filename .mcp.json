@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "lex-mcp": {
+      "type": "http",
+      "url": "https://api.lex-mcp.pl/mcp/catalog/messages"
+    }
+  }
+}

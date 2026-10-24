@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "lex-mcp": {
+      "type": "streamable-http",
+      "url": "https://api.lex-mcp.pl/mcp/catalog/messages"
+    }
+  }
+}
